@@ -111,14 +111,26 @@ public class AlgorithmsAndComputationalComplexity {
         return max;
     }
 
-//    public static boolean checkInclusion(String s1, String s2) {
-//        int start = 0;
-//        HashSet<Character> s1HashSet = new HashSet<>();
-//
-//        for (int i = start; i < s2.length(); i++) {
-//
-//        }
-//    }
+    public static boolean checkInclusion(String s1, String s2) {
+        if (s1.length()>s2.length()) return false;
+        int[] s1Arr = new int[26];
+        int[] windowArr = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            s1Arr[s1.charAt(i)-'a']++;
+            windowArr[s2.charAt(i)-'a']++;
+        }
+
+        if (Arrays.equals(s1Arr,windowArr)) return true;
+
+        for (int i = s1.length(); i<s2.length(); i++) {
+            windowArr[s2.charAt(i)-'a']++;
+            windowArr[s2.charAt(i-s1.length())-'a']--;
+
+            if (Arrays.equals(s1Arr,windowArr)) return true;
+        }
+        return false;
+    }
 
 
     public static void main(String[] args) {
@@ -164,38 +176,13 @@ public class AlgorithmsAndComputationalComplexity {
         System.out.println(lengthOfLongestSubstring("dvdf"));     // 3
         System.out.println(lengthOfLongestSubstring("abba"));     // 2
 
-//        System.out.println(checkInclusion("ab", "eidbaooo")); // ✅ true → "ba" jest w "eidbaooo"
-//        System.out.println(checkInclusion("ab", "eidboaoo")); // ❌ false → żadna permutacja "ab" się nie pojawia
-//        System.out.println(checkInclusion("adc", "dcda"));    // ✅ true → "dca" zawiera permutację "adc"
-//        System.out.println(checkInclusion("a", "a"));         // ✅ true → jeden znak się zgadza
-//        System.out.println(checkInclusion("a", "b"));         // ❌ false → inne znaki
-//        System.out.println(checkInclusion("abc", "ccccbbbbaaaa")); // ❌ false
-//        System.out.println(checkInclusion("abc", "bbbca"));         // ✅ true → "bca"
-
-
-
-        TreeMap<Character,Integer> treeMap1 = new TreeMap<>();
-        TreeMap<Character,Integer> treeMap2 = new TreeMap<>();
-        String s1 = "mus";
-        String s2 = "sum";
-        for (Character c : s1.toCharArray()) {
-            treeMap1.put(c, treeMap1.getOrDefault(c,0)+1);
-        }
-
-        for (Character c : s2.toCharArray()) {
-            treeMap2.put(c, treeMap2.getOrDefault(c,0)+1);
-        }
-
-        for (Map.Entry<Character,Integer> entry : treeMap1.entrySet()) {
-            if (entry.getKey().equals(treeMap2));
-        }
-
-        for (Map.Entry<Character,Integer> entry : treeMap2.entrySet()) {
-            System.out.println(entry.getKey()+" -> "+entry.getValue());
-        }
-
+        System.out.println(checkInclusion("ab", "eidbaooo")); // ✅ true → "ba" jest w "eidbaooo"
+        System.out.println(checkInclusion("ab", "eidboaoo")); // ❌ false → żadna permutacja "ab" się nie pojawia
+        System.out.println(checkInclusion("adc", "dcda"));    // ✅ true → "dca" zawiera permutację "adc"
+        System.out.println(checkInclusion("a", "a"));         // ✅ true → jeden znak się zgadza
+        System.out.println(checkInclusion("a", "b"));         // ❌ false → inne znaki
+        System.out.println(checkInclusion("abc", "ccccbbbbaaaa")); // ❌ false
+        System.out.println(checkInclusion("abc", "bbbca"));         // ✅ true → "bca"
 
     }
-
-
 }
