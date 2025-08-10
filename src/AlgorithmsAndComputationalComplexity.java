@@ -132,6 +132,61 @@ public class AlgorithmsAndComputationalComplexity {
         return false;
     }
 
+//    public static String minimumWindowSubstring(String s, String t) {
+//        if (t.length() > s.length()) return new String("");
+//        int[] need = new int[26];
+//        int[] s1Arr = new int[26];
+//
+//        for (int i = 0; i < s.length(); i++) {
+//            s1Arr[s.charAt(i)-'a']++;
+//
+//        }
+//
+//        return need.toString();
+//    }
+
+    public static boolean isAnagram(String s1, String s2) {
+        s1=s1.toLowerCase();
+        s2=s2.toLowerCase();
+        if (s1.equals(s2)) return true;
+        if (s1.length()!=s2.length()) return false;
+        int[] s1Arr = new int[26];
+        int[] s2Arr = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            s1Arr[s1.charAt(i)-'a']++;
+            s2Arr[s2.charAt(i)-'a']++;
+        }
+        if (Arrays.equals(s1Arr,s2Arr)) return true;
+        else return false;
+    }
+    public static boolean isAnagram2(String s1, String s2) {
+        s1=s1.toLowerCase();
+        s2=s2.toLowerCase();
+
+        Map<Character,Integer> map = new TreeMap<>();
+
+        if (s1.length()!=s2.length()) return false;
+
+        for (int i = 0; i < s1.length(); i++) {
+            map.put(s1.charAt(i), map.getOrDefault(s1.charAt(i),0)+1);
+            map.put(s2.charAt(i), map.getOrDefault(s2.charAt(i),0)-1);
+        }
+        for (int count  : map.values()) {
+            if (count!=0) return false;
+        }
+        return true;
+    }
+
+    public static int GCD(int a, int b) {
+        return 0;
+    }
+
+    public static int factorial(int n) {
+        if (n==0) return 1;
+        return n*factorial(n-1);
+    }
+
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4, 5};
@@ -183,6 +238,26 @@ public class AlgorithmsAndComputationalComplexity {
         System.out.println(checkInclusion("a", "b"));         // ❌ false → inne znaki
         System.out.println(checkInclusion("abc", "ccccbbbbaaaa")); // ❌ false
         System.out.println(checkInclusion("abc", "bbbca"));         // ✅ true → "bca"
+
+        System.out.println("isAnagram:");
+        System.out.print(isAnagram("listen", "silent"));    // true
+        System.out.print(isAnagram2("listen", "silent")+"|");    // true
+        System.out.print(isAnagram("triangle", "integral"));// true
+        System.out.print(isAnagram2("triangle", "integral")+"|");// true
+        System.out.print(isAnagram("apple", "papel"));      // true
+        System.out.print(isAnagram2("apple", "papel")+"|");      // true
+        System.out.print(isAnagram("rat", "car"));          // false
+        System.out.print(isAnagram2("rat", "car")+"|");          // false
+        System.out.print(isAnagram("aabb", "bbaa"));        // true
+        System.out.print(isAnagram2("aabb", "bbaa")+"|");        // true
+        System.out.print(isAnagram("abc", "abcc"));         // false
+        System.out.print(isAnagram2("abc", "abcc")+"|");         // false
+        System.out.println("Factorial:");
+        System.out.println(factorial(1));
+        System.out.println(factorial(2));
+        System.out.println(factorial(3));
+        System.out.println(factorial(4));
+        System.out.println(factorial(0));
 
     }
 }
