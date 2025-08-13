@@ -178,14 +178,40 @@ public class AlgorithmsAndComputationalComplexity {
         return true;
     }
 
-    public static int GCD(int a, int b) {
-        return 0;
-    }
-
     public static int factorial(int n) {
         if (n==0) return 1;
         return n*factorial(n-1);
     }
+
+    public static int fibonacci(int n) {
+        if (n==0) return 0;
+        if (n==1) return 1;
+        return fibonacci(n-1)+fibonacci(n-2);
+    }
+
+    public static boolean binarySearch(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length-1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (nums[mid]==target) return true;
+            else if (nums[mid] < target) low = mid+1;
+            else  high=mid-1;
+        }
+        return false;
+    }
+
+    public static String reverseString(String s) {
+
+        return s;
+    }
+
+    public static int GCD(int a, int b) {
+        if (Math.min(a,b)==0) return Math.max(a,b);
+        return GCD(b,a%b);
+    }
+
 
 
     public static void main(String[] args) {
@@ -256,8 +282,38 @@ public class AlgorithmsAndComputationalComplexity {
         System.out.println(factorial(1));
         System.out.println(factorial(2));
         System.out.println(factorial(3));
-        System.out.println(factorial(4));
+        System.out.println(factorial(5));
         System.out.println(factorial(0));
 
+        System.out.println("Fibonaci:");
+        System.out.println(fibonacci(0));
+        System.out.println(fibonacci(1));
+        System.out.println(fibonacci(2));
+        System.out.println(fibonacci(3));
+        System.out.println(fibonacci(4));
+        System.out.println(fibonacci(5));
+        System.out.println(fibonacci(6));
+        System.out.println(fibonacci(7));
+        System.out.println(fibonacci(8));
+
+        System.out.println("binarySearch:");
+
+        int[] numsbs = {1, 3, 5, 7, 9, 11, 15};
+
+        System.out.println(binarySearch(numsbs, 5));   // true
+        System.out.println(binarySearch(numsbs, 1));   // true
+        System.out.println(binarySearch(numsbs, 15));  // true
+        System.out.println(binarySearch(numsbs, 0));   // false
+        System.out.println(binarySearch(numsbs, 10));  // false
+        System.out.println(binarySearch(numsbs, 16));  // false
+
+        System.out.println("GCD:");
+        System.out.println(GCD(54, 24));    // 6
+        System.out.println(GCD(100, 6));    // 2
+        System.out.println(GCD(17, 13));    // 1 (liczby pierwsze)
+        System.out.println(GCD(0, 5));      // 5
+        System.out.println(GCD(5, 0));      // 5
+        System.out.println(GCD(0, 0));      // 0 (umownie)
+        System.out.println(GCD(48, 180));   // 12
     }
 }
