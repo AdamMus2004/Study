@@ -212,6 +212,15 @@ public class AlgorithmsAndComputationalComplexity {
         return GCD(b,a%b);
     }
 
+    public static boolean isPalindrome(String s) {
+        s=s.toLowerCase();
+        for (int i = 0; i < s.length()/2; i++) {
+            if (s.charAt(i)!=' ' || s.charAt(i)!=',') {
+            if (!(s.charAt(i)==s.charAt(s.length()-i-1))) return false;}
+        }
+        return true;
+    }
+
 
 
     public static void main(String[] args) {
@@ -315,5 +324,12 @@ public class AlgorithmsAndComputationalComplexity {
         System.out.println(GCD(5, 0));      // 5
         System.out.println(GCD(0, 0));      // 0 (umownie)
         System.out.println(GCD(48, 180));   // 12
+
+        System.out.println(isPalindrome("kajak"));
+        System.out.println(isPalindrome("Anna"));
+        System.out.println(isPalindrome("Kot"));
+        System.out.println(isPalindrome("A man, a plan, a canal, Panamajak"));
+
+        System.out.println(Math.pow(2,0.5));
     }
 }
