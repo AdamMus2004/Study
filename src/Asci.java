@@ -14,5 +14,10 @@ public class Asci {
         for (int i = 0; i < arr1.length; i++) {
             System.out.print(arr1[i]);
         }
+        String s ="b;ab;aa";
+        s.toLowerCase()
+        s.replaceAll("","");
+        int[] arr = {1,2,33,4,5,2,21};
+        arr = arr.so
     }
 }

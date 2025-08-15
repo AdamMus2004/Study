@@ -214,13 +214,18 @@ public class AlgorithmsAndComputationalComplexity {
 
     public static boolean isPalindrome(String s) {
         s=s.toLowerCase();
+        s=s.replaceAll("[^a-z0-9]","");
         for (int i = 0; i < s.length()/2; i++) {
-            if (s.charAt(i)!=' ' || s.charAt(i)!=',') {
-            if (!(s.charAt(i)==s.charAt(s.length()-i-1))) return false;}
+            if (!(s.charAt(i)==s.charAt(s.length()-i-1))) return false;
         }
         return true;
     }
 
+//    public static int[] quicksort(int[] nums, int left, int right) {
+//        Random random = new Random();
+//        int pivot = random.nextInt(0,nums.length);
+//
+//    }
 
 
     public static void main(String[] args) {
